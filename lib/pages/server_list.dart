@@ -185,7 +185,7 @@ class ServerListPageState extends State<ServerListPage> with AutomaticKeepAliveC
                       children: [
                         Text(
                           _serverModel.serverEntityList[index].name,
-                          style: Theme.of(context).textTheme.bodyText1,
+                          //style: Theme.of(context).textTheme.bodyText1,
                         ),
                         const SizedBox(
                           width: 15,

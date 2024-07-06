@@ -12,8 +12,8 @@ class HttpUtil {
 
   HttpUtil() {
     BaseOptions options = BaseOptions(
-      connectTimeout: 10000,
-      receiveTimeout: 10000,
+      connectTimeout: const Duration(milliseconds: 10000),
+      receiveTimeout: const Duration(milliseconds: 10000),
     );
     dio = Dio(options);
     dio.interceptors.add(InterceptorsWrapper(onRequest: (options, handler) async {
@@ -49,7 +49,12 @@ class HttpUtil {
         }
 
         return handler
-            .reject(DioError(requestOptions: response.requestOptions, response: response, type: DioErrorType.response));
+            .reject(DioException(
+              requestOptions: response.requestOptions, 
+              response: response,
+              type: DioExceptionType.badResponse,
+            ),
+        );
       }
 
       return handler.next(response);
